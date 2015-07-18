@@ -1,0 +1,2 @@
+- Primeira fase compĺeta
+- classe e ordenação
