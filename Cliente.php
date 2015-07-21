@@ -1,28 +1,84 @@
 <?php
-class Cliente
+abstract class Cliente
 {
-    private $cpf;
-    private $nome;
-    private $endereco;
-    private $email;
+    protected $nome;
+    protected $endereco;
+    protected $email;
+    protected $cpfcnpj;
 
-    public function __construct($cpf, $nome, $endereco, $email){
-        $this->cpf = $cpf;
+    protected function __construct($cpfcnpj, $nome, $endereco, $email)
+    {
+        $this->setCpfcnpj($cpfcnpj);
+        $this->setNome($nome);
+        $this->setEndereco($endereco);
+        $this->setEmail($email);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNome()
+    {
+        return $this->nome;
+    }
+
+    /**
+     * @param mixed $nome
+     */
+    public function setNome($nome)
+    {
         $this->nome = $nome;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEndereco()
+    {
+        return $this->endereco;
+    }
+
+    /**
+     * @param mixed $endereco
+     */
+    public function setEndereco($endereco)
+    {
         $this->endereco = $endereco;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email)
+    {
         $this->email = $email;
     }
 
-    public function getCpf(){
-        return $this->cpf;
+    /**
+     * @return mixed
+     */
+    public function getCpfcnpj()
+    {
+        return $this->cpfcnpj;
     }
-    public function getNome(){
-        return $this->nome;
+
+    /**
+     * @param mixed $cpfcnpj
+     */
+    public function setCpfcnpj($cpfcnpj)
+    {
+        $this->cpfcnpj = $cpfcnpj;
     }
-    public function getEndereco(){
-        return $this->endereco;
-    }
-    public function getEmail(){
-        return $this->email;
-    }
+
+    abstract function setGrau($grau);
+    abstract function getGrau();
+
 }
