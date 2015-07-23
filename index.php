@@ -1,9 +1,11 @@
 <?php
 require_once("config.php");
+require_once("EnderecoCobrancaInterface.php");
+require_once("GrauImportanciaInterface.php");
 require_once("Cliente.php");
-require_once("ClienteInterface.php");
 require_once("ClienteFisico.php");
 require_once("ClienteJuridico.php");
+
 
 $g = $j =1;
 for($i=0; $i<=9; $i++){

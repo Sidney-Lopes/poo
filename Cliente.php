@@ -1,10 +1,13 @@
 <?php
-abstract class Cliente
+abstract class Cliente implements EnderecoCobrancaInterface, GrauImportanciaInterface
 {
     protected $nome;
     protected $endereco;
     protected $email;
     protected $cpfcnpj;
+    protected $grau;
+    protected $endcobranca;
+
 
     protected function __construct($cpfcnpj, $nome, $endereco, $email)
     {
@@ -78,7 +81,26 @@ abstract class Cliente
         $this->cpfcnpj = $cpfcnpj;
     }
 
-    abstract function setGrau($grau);
-    abstract function getGrau();
+    public function getEndcobranca()
+    {
+        return $this->endcobranca;
+    }
+
+    public function setEndcobranca($endcobranca)
+    {
+        $this->endcobranca = $endcobranca;
+        return $this;
+    }
+
+    public function getGrau()
+    {
+        return $this->grau;
+    }
+
+    public function setGrau($grau)
+    {
+        $this->grau = $grau;
+        return $this;
+    }
 
 }
