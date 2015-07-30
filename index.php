@@ -1,11 +1,9 @@
 <?php
-require_once("config.php");
-require_once("EnderecoCobrancaInterface.php");
-require_once("GrauImportanciaInterface.php");
-require_once("Cliente.php");
-require_once("ClienteFisico.php");
-require_once("ClienteJuridico.php");
+require_once("assets/config.php");
+require_once("assets/autoload.php");
 
+use SJL\Clientes\Tipo\ClienteFisico;
+use SJL\Clientes\Tipo\ClienteJuridico;
 
 $g = $j =1;
 for($i=0; $i<=9; $i++){
@@ -21,7 +19,7 @@ for($i=0; $i<=9; $i++){
     }
 }
 
-// supondo que nem todo cliente vai ter endereço de cobrança diferente
+// supondo que nem todo Clientes vai ter endereço de cobrança diferente
 $clientes[1]->setEndcobranca("Rua do Pato, numero 13");
 $clientes[5]->setEndcobranca("Rua Devo não Nego, numero 20");
 $clientes[7]->setEndcobranca("Rua Pago Quando Puder, numero 171");
@@ -33,10 +31,10 @@ $segments = explode('/', $pagina);
 
 $segments['0'] = empty($segments['0']) ? "lista-clientes" : $segments['0'];
 
-if(file_exists($segments['0'].".php")){
-    require_once('content.php');
+if(file_exists("assets/" . $segments['0'] . ".php")){
+    require_once('assets/content.php');
 }
 else{
-    require_once('404.php');
+    require_once('assets/404.php');
 }
 ?>

@@ -1,4 +1,10 @@
 <?php
+
+namespace SJL\Clientes\Abstrato;
+
+use SJL\Clientes\ClienteInterfaces\EnderecoCobrancaInterface;
+use SJL\Clientes\ClienteInterfaces\GrauImportanciaInterface;
+
 abstract class Cliente implements EnderecoCobrancaInterface, GrauImportanciaInterface
 {
     protected $nome;
