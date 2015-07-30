@@ -4,3 +4,7 @@
 - Segunda fase.
 - As classes ClienteFisico e ClienteJuridico herdam de cliente.
 - As classe abstrata cliente implementa EnderecoCobrancaInterface e GrauImportanciaInterface.
+
+
+- Terceira fase.
+- Arrumação das pastas,  namespace e autoload implementados
