@@ -19,7 +19,7 @@ for($i=0; $i<=9; $i++){
     }
 }
 
-// supondo que nem todo Clientes vai ter endereço de cobrança diferente
+// supondo que nem todo Cliente vai ter endereço de cobrança diferente
 $clientes[1]->setEndcobranca("Rua do Pato, numero 13");
 $clientes[5]->setEndcobranca("Rua Devo não Nego, numero 20");
 $clientes[7]->setEndcobranca("Rua Pago Quando Puder, numero 171");
