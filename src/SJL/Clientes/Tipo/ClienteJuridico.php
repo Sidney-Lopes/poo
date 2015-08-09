@@ -11,3 +11,4 @@ class ClienteJuridico extends Cliente
         parent::__construct($cpfcnpj,$nome,$endereco,$email);
     }
 }
+?>
