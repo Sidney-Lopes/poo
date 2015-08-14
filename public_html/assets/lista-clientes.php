@@ -1,3 +1,6 @@
+<?php
+use SJL\Clientes\Tipo\ClienteFisico;
+?>
 <h1>Clientes</h1>
 
 <!-- Table -->

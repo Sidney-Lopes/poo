@@ -1,3 +1,4 @@
+<?php use SJL\Clientes\Tipo\ClienteFisico; ?>
 <?php if(isset($segments['1'])): ?>
 <?php $key = $segments['1']; ?>
 

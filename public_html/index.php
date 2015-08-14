@@ -1,30 +1,37 @@
 <?php
 require_once("assets/config.php");
 require_once("assets/autoload.php");
-
+use SJL\Conexao;
 use SJL\Clientes\Tipo\ClienteFisico;
 use SJL\Clientes\Tipo\ClienteJuridico;
 
-$g = $j =1;
-for($i=0; $i<=9; $i++){
-    if($i%2 == 0) {
-        $clientes[$i] = new ClienteFisico("999.999.999-9{$i}", "Nome{$i}", "Rua Qualquer, numero {$i}", "nome{$i}@yahoo.com.br");
-        $clientes[$i]->setGrau($g);
-        $g++;
-    }
-    else{
-        $clientes[$i] = new ClienteJuridico("99.999.999/9999-9{$i}", "Empresa{$i}", "Rua do Empresário, numero {$i}", "contato@empresa{$i}.com.br");
-        $clientes[$i]->setGrau($j);
-        $j++;
-    }
+$sql = "select * from clientefisico";
+$conn = Conexao::DBConect();
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$ClientesFisicos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$sql2 = "select * from clientejuridico";
+$stmt = $conn->prepare($sql2);
+$stmt->execute();
+$ClientesJuridicos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+foreach($ClientesJuridicos as $key => $ClienteJuridico){
+    $clientesJ[$key] = new ClienteJuridico($ClienteJuridico['cnpj'],$ClienteJuridico['nome'],$ClienteJuridico['endereco'],$ClienteJuridico['email']);
+    $clientesJ[$key]->setGrau($ClienteJuridico['grau']);
+    $clientesJ[$key]->setEndcobranca($ClienteJuridico['endcobranca']);
 }
 
-// supondo que nem todo Cliente vai ter endereço de cobrança diferente
-$clientes[1]->setEndcobranca("Rua do Pato, numero 13");
-$clientes[5]->setEndcobranca("Rua Devo não Nego, numero 20");
-$clientes[7]->setEndcobranca("Rua Pago Quando Puder, numero 171");
-$clientes[9]->setEndcobranca("Avenida do Calote, numero 1001");
+foreach($ClientesFisicos as $key => $ClienteFisico){
+    $clientesF[$key] = new ClienteFisico($ClienteFisico['cpf'],$ClienteFisico['nome'],$ClienteFisico['endereco'],$ClienteFisico['email']);
+    $clientesF[$key]->setGrau($ClienteFisico['grau']);
+    $clientesF[$key]->setEndcobranca($ClienteFisico['endcobranca']);
+}
 
+$clientes = array_merge($clientesJ,$clientesF);
+
+// url site
+$base = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'];
 $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $pagina = ltrim($url, "/");
 $segments = explode('/', $pagina);
