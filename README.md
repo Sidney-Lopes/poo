@@ -7,4 +7,5 @@
 
 
 - Terceira fase.
-- Arrumação das pastas,  namespace e autoload implementados
+- Arrumação das pastas,  namespace e autoload implementados.
+- Lendo e inserindo dados no banco.
